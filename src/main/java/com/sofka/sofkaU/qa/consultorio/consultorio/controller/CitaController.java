@@ -31,9 +31,9 @@ public class CitaController implements IController<Cita>{
     public ResponseEntity eliminar(@RequestBody Cita cita) {
         return new ResponseEntity(service.eliminar(cita),HttpStatus.GONE);
     }
-
+    @PutMapping("/actualizar/{cedula}")
     @Override
-    public ResponseEntity actualizar(String cedula, Cita cita) {
+    public ResponseEntity actualizar(@PathVariable String cedula,@RequestBody Cita cita) {
         return new ResponseEntity(service.actualizar(cedula,cita),HttpStatus.ACCEPTED);
     }
 }
