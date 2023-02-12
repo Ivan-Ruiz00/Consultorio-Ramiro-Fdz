@@ -19,4 +19,7 @@ public class HistoriaService {
     public void eliminar(Paciente paciente){
         historiaMedicaRepository.eliminar(paciente);
     }
+    public void actualizar(Paciente paciente,HistoriaMedica historiaMedica){
+        historiaMedicaRepository.actualizar(paciente,historiaMedica);
+    }
 }

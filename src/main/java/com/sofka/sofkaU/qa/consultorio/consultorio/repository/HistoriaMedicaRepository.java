@@ -21,4 +21,9 @@ public class HistoriaMedicaRepository{
     public void eliminar(Paciente paciente) {
         historias.remove(paciente);
     }
+    public void actualizar(Paciente paciente, HistoriaMedica historiaMedica){
+        ArrayList<HistoriaMedica> lista=historias.get(paciente);
+        lista.add(historiaMedica);
+        historias.put(paciente,lista);
+    }
 }
