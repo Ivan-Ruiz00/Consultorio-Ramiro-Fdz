@@ -1,5 +1,8 @@
 package com.sofka.sofkaU.qa.consultorio.consultorio.service.modelo;
 
+import java.util.ArrayList;
+
 public interface IService<Modelo>{
-    void getServicio();
+    Modelo agregar(Modelo objeto);
+    ArrayList<Modelo> mostrar();
 }

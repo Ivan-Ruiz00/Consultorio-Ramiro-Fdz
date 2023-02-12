@@ -5,7 +5,10 @@ import com.sofka.sofkaU.qa.consultorio.consultorio.service.modelo.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class PacienteService implements IService<Paciente>{
@@ -15,7 +18,13 @@ public class PacienteService implements IService<Paciente>{
         return pacienteRepository.getPacientes();
     }
     @Override
-    public void getServicio() {
-        this.getPacientes();
+    public Paciente agregar(Paciente paciente) {
+        this.pacienteRepository.agregar(paciente);
+        return paciente;
+    }
+
+    @Override
+    public ArrayList<Paciente> mostrar() {
+        return (ArrayList<Paciente>)this.pacienteRepository.getPacientes().stream().collect(Collectors.toList());
     }
 }
