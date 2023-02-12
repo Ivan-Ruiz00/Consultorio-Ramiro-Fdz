@@ -36,4 +36,10 @@ public class PacienteService implements IService<Paciente>{
         this.pacienteRepository.actualizar(id,paciente);
         return paciente;
     }
+
+    @Override
+    public String eliminar(Paciente paciente) {
+        this.pacienteRepository.eliminar(paciente);
+        return "Se eliminó el paciente "+paciente;
+    }
 }

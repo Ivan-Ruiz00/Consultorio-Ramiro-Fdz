@@ -6,4 +6,5 @@ public interface IService<Modelo>{
     Modelo agregar(Modelo objeto);
     ArrayList<Modelo> mostrar();
     Modelo actualizar(String id,Modelo modelo);
+    String eliminar(Modelo modelo);
 }
