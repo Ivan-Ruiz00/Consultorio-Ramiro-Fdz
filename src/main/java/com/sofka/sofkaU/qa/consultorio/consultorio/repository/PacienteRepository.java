@@ -7,6 +7,9 @@ import java.util.Set;
 @Repository
 public class PacienteRepository implements IRepositorio<Paciente>{
     private Set<Paciente> pacientes=new HashSet<>();
+    public Set<Paciente> getPacientes() {
+        return pacientes;
+    }
     @Override
     public void agregar(Paciente paciente) {
         pacientes.add(paciente);
