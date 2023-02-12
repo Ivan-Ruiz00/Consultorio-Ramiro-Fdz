@@ -19,6 +19,10 @@ public class PacienteService implements IService<Paciente>{
     }
     @Override
     public Paciente agregar(Paciente paciente) {
+        if (paciente.getNombre()==null||paciente.getCedula()==null) {
+            System.out.println("No se pudo agregar el paciente");
+            return null;
+        }
         this.pacienteRepository.agregar(paciente);
         return paciente;
     }
