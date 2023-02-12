@@ -6,10 +6,8 @@ import com.sofka.sofkaU.qa.consultorio.consultorio.service.modelo.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping("api/v1/pacientes")
 public class PacienteController implements IController<Paciente> {
@@ -24,7 +22,7 @@ public class PacienteController implements IController<Paciente> {
     }
     @PostMapping("/agregar")
     @Override
-    public ResponseEntity agregar(Paciente paciente) {
+    public ResponseEntity agregar(@RequestBody Paciente paciente) {
         return new ResponseEntity(service.agregar(paciente),HttpStatus.ACCEPTED);
     }
 
