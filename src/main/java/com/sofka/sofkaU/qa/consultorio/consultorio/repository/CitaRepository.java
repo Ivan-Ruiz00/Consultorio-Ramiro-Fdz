@@ -11,16 +11,27 @@ import java.util.Set;
 @Repository
 public class CitaRepository implements IRepositorio<Cita>{
     private final int horasDiarias=8;
-    private HashMap<String,Integer> semana= (HashMap<String, Integer>)Map.of("Lunes",getHorasDiarias(),"Martes",getHorasDiarias()
-    ,"Miercoles",getHorasDiarias(),"Jueves",getHorasDiarias(),"Viernes",getHorasDiarias());
-    Set<Cita> citas=new HashSet<>();
+    private Set<Cita> citas=new HashSet<>();
+    private HashMap<String,Integer> semana= new HashMap<>();
+    public CitaRepository() {
+        semana.put("Lunes",getHorasDiarias());
+        semana.put("Martes",getHorasDiarias());
+        semana.put("Miercoles",getHorasDiarias());
+        semana.put("Jueves",getHorasDiarias());
+        semana.put("Viernes",getHorasDiarias());
+    }
+
     public Set<Cita> getCitas() {
         return citas;
     }
     @Override
     public void agregar(Cita cita) {
         if (semana.get(cita.getDia())>0){
-            citas.add(cita);
+                if (!citas.stream().anyMatch(c -> c.getDia()
+                        .equals(cita.getDia())&&c.getHoras().equals(cita.getHoras()))){
+                    citas.add(cita);
+                    semana.put(cita.getDia(),semana.get(cita.getDia())-Integer.parseInt(cita.getDuracion()));
+                }
             return;
         }
         System.out.println("La agenda del día "+cita.getDia()+" se encuentra a tope");

@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Paciente {
     private String nombre,cedula;
     private int edad;
+    private Cita cita;
     public String getNombre() {
         return nombre;
     }

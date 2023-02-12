@@ -4,13 +4,14 @@ import com.sofka.sofkaU.qa.consultorio.consultorio.repository.CitaRepository;
 import com.sofka.sofkaU.qa.consultorio.consultorio.service.modelo.Cita;
 import com.sofka.sofkaU.qa.consultorio.consultorio.service.modelo.IService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-
+@Service
 public class CitaService implements IService<Cita>{
     @Autowired
-    CitaRepository citaRepository;
+    private CitaRepository citaRepository;
     @Override
     public Cita agregar(Cita cita) {
         citaRepository.agregar(cita);

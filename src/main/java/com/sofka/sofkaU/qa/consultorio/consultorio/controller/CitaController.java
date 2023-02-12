@@ -1,24 +1,29 @@
 package com.sofka.sofkaU.qa.consultorio.consultorio.controller;
 import com.sofka.sofkaU.qa.consultorio.consultorio.controller.modelo.IController;
-import com.sofka.sofkaU.qa.consultorio.consultorio.repository.CitaRepository;
 import com.sofka.sofkaU.qa.consultorio.consultorio.service.modelo.Cita;
 import com.sofka.sofkaU.qa.consultorio.consultorio.service.modelo.IService;
+import com.sofka.sofkaU.qa.consultorio.consultorio.service.modelo.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping("api/v1/citas")
 public class CitaController implements IController<Cita>{
     @Autowired
-    IService service;
+    private IService<Cita> service;
+    @Autowired
+    private IService<Paciente> pacienteIService;
+    @GetMapping("/all")
     @Override
     public ResponseEntity mostrar() {
         return new ResponseEntity(service.mostrar(),HttpStatus.FOUND);
     }
+    @PostMapping("/agendar")
     @Override
-    public ResponseEntity agregar(Cita cita) {
+    public ResponseEntity agregar(@RequestBody Cita cita) {
+        pacienteIService.agregar(cita.getPaciente());
         return new ResponseEntity(service.agregar(cita), HttpStatus.ACCEPTED);
     }
 

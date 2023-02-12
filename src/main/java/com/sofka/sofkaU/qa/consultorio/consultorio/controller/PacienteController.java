@@ -1,6 +1,7 @@
 package com.sofka.sofkaU.qa.consultorio.consultorio.controller;
 import com.sofka.sofkaU.qa.consultorio.consultorio.controller.modelo.IController;
-import com.sofka.sofkaU.qa.consultorio.consultorio.repository.PacienteRepository;
+import com.sofka.sofkaU.qa.consultorio.consultorio.repository.CitaRepository;
+import com.sofka.sofkaU.qa.consultorio.consultorio.service.modelo.Cita;
 import com.sofka.sofkaU.qa.consultorio.consultorio.service.modelo.IService;
 import com.sofka.sofkaU.qa.consultorio.consultorio.service.modelo.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/pacientes")
 public class PacienteController implements IController<Paciente> {
     @Autowired
-    IService<Paciente> service;
+    private IService<Paciente> service;
+    @Autowired
+    private CitaRepository citaRepository;
     @GetMapping("/all")
     @Override
     public ResponseEntity mostrar() {
@@ -25,6 +28,8 @@ public class PacienteController implements IController<Paciente> {
     }
     @PutMapping("/{cedula}")
     public ResponseEntity actualizar(@PathVariable String cedula,@RequestBody Paciente paciente){
+        citaRepository.getCitas().stream().filter(cita -> cita.getPaciente().equals(paciente))
+                .findFirst().ifPresent(cita -> cita.setPaciente(paciente));
         return new ResponseEntity(service.actualizar(cedula,paciente),HttpStatus.ACCEPTED);
     }
     @DeleteMapping("/eliminar")
