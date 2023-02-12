@@ -26,9 +26,9 @@ public class CitaController implements IController<Cita>{
         pacienteIService.agregar(cita.getPaciente());
         return new ResponseEntity(service.agregar(cita), HttpStatus.ACCEPTED);
     }
-
+    @DeleteMapping("/borrar")
     @Override
-    public ResponseEntity eliminar(Cita cita) {
+    public ResponseEntity eliminar(@RequestBody Cita cita) {
         return new ResponseEntity(service.eliminar(cita),HttpStatus.GONE);
     }
 
