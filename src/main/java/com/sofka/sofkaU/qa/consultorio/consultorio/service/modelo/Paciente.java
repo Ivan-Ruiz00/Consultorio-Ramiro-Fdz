@@ -51,3 +51,32 @@ public class Paciente {
         return Objects.hash(nombre, cedula, edad);
     }
 }
+class PacienteBuilder{
+    private Paciente paciente;
+    public PacienteBuilder(){
+        paciente=new Paciente();
+    }
+    public PacienteBuilder nombre(String nombre){
+        paciente.setNombre(nombre);
+        return this;
+    }
+    public PacienteBuilder cedula(String cedula){
+        paciente.getCedula();
+        return this;
+    }
+    public PacienteBuilder edad(int edad){
+        paciente.setEdad(edad);
+        return this;
+    }
+    public PacienteBuilder cita(Cita cita){
+        paciente.setCita(cita);
+        return this;
+    }
+    public PacienteBuilder historiaMedica(HistoriaMedica historiaMedica){
+        paciente.setHistoriaMedica(historiaMedica);
+        return this;
+    }
+    public Paciente build(){
+        return paciente;
+    }
+}

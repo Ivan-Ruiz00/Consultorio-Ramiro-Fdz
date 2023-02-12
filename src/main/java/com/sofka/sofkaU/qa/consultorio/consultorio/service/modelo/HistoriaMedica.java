@@ -8,3 +8,16 @@ public class HistoriaMedica {
         this.descripcion = descripcion;
     }
 }
+class HistoriaMedicaBuilder{
+    private HistoriaMedica historiaMedica;
+    public HistoriaMedicaBuilder(){
+        historiaMedica=new HistoriaMedica();
+    }
+    public HistoriaMedicaBuilder descripcion(String descripcion){
+        historiaMedica.setDescripcion(descripcion);
+        return this;
+    }
+    public HistoriaMedica build(){
+        return historiaMedica;
+    }
+}

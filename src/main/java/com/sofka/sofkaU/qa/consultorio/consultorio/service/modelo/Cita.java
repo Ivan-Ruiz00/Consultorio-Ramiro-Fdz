@@ -20,3 +20,20 @@ public class Cita extends Horario{
         this.paciente = paciente;
     }
 }
+class CitaBuilder{
+    private Cita cita;
+    public CitaBuilder(){
+        cita=new Cita();
+    }
+    public CitaBuilder descripcion(String descripcion){
+        cita.setDescripcion(descripcion);
+        return this;
+    }
+    public CitaBuilder paciente(Paciente paciente){
+        cita.setPaciente(paciente);
+        return this;
+    }
+    public Cita build(){
+        return cita;
+    }
+}
