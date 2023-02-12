@@ -31,4 +31,9 @@ public class PacienteService implements IService<Paciente>{
     public ArrayList<Paciente> mostrar() {
         return (ArrayList<Paciente>)this.pacienteRepository.getPacientes().stream().collect(Collectors.toList());
     }
+    @Override
+    public Paciente actualizar(String id, Paciente paciente) {
+        this.pacienteRepository.actualizar(id,paciente);
+        return paciente;
+    }
 }

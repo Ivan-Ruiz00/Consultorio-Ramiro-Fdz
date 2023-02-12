@@ -28,7 +28,7 @@ public class Paciente {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Paciente paciente = (Paciente) o;
-        return edad == paciente.edad && Objects.equals(nombre, paciente.nombre) && Objects.equals(cedula, paciente.cedula);
+        return edad == paciente.edad || Objects.equals(nombre, paciente.nombre) || Objects.equals(cedula, paciente.cedula);
     }
     @Override
     public int hashCode() {

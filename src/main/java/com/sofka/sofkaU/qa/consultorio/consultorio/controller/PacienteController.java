@@ -25,7 +25,10 @@ public class PacienteController implements IController<Paciente> {
     public ResponseEntity agregar(@RequestBody Paciente paciente) {
         return new ResponseEntity(service.agregar(paciente),HttpStatus.ACCEPTED);
     }
-
+    @PutMapping("/{cedula}")
+    public ResponseEntity actualizar(@PathVariable String cedula,@RequestBody Paciente paciente){
+        return new ResponseEntity(service.actualizar(cedula,paciente),HttpStatus.ACCEPTED);
+    }
     @Override
     public ResponseEntity eliminar(Paciente paciente) {
         return null;
