@@ -6,6 +6,21 @@ public class Paciente {
     private String nombre,cedula;
     private int edad;
     private Cita cita;
+    private HistoriaMedica historiaMedica;
+    public Cita getCita() {
+        return cita;
+    }
+    public void setCita(Cita cita) {
+        this.cita = cita;
+    }
+    public HistoriaMedica getHistoriaMedica() {
+        return historiaMedica;
+    }
+
+    public void setHistoriaMedica(HistoriaMedica historiaMedica) {
+        this.historiaMedica = historiaMedica;
+    }
+
     public String getNombre() {
         return nombre;
     }

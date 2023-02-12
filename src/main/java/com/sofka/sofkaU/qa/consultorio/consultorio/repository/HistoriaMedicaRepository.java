@@ -10,22 +10,15 @@ import java.util.HashMap;
 @Repository
 public class HistoriaMedicaRepository{
     protected HashMap<Paciente,ArrayList<HistoriaMedica>> historias=new HashMap<>();
-
     public HashMap<Paciente, ArrayList<HistoriaMedica>> getHistorias() {
         return historias;
     }
-
     public void agregar(Paciente paciente, HistoriaMedica historiaMedica) {
         ArrayList<HistoriaMedica> lista=historias.get(paciente);
         lista.add(historiaMedica);
         historias.put(paciente,lista);
     }
-
-    public void eliminar(HistoriaMedica historiaMedica) {
-
-    }
-
-    public void actualizar(String id, HistoriaMedica historiaMedica) {
-
+    public void eliminar(Paciente paciente) {
+        historias.remove(paciente);
     }
 }

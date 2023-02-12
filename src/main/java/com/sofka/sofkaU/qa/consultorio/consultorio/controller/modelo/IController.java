@@ -4,4 +4,5 @@ public interface IController <Modelo>{
     ResponseEntity mostrar();
     ResponseEntity agregar(Modelo modelo);
     ResponseEntity eliminar(Modelo modelo);
+    ResponseEntity actualizar(String cedula,Modelo modelo);
 }

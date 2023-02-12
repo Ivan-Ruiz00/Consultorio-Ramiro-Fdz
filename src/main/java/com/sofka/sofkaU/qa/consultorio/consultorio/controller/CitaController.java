@@ -29,6 +29,11 @@ public class CitaController implements IController<Cita>{
 
     @Override
     public ResponseEntity eliminar(Cita cita) {
-        return null;
+        return new ResponseEntity(service.eliminar(cita),HttpStatus.GONE);
+    }
+
+    @Override
+    public ResponseEntity actualizar(String cedula, Cita cita) {
+        return new ResponseEntity(service.actualizar(cedula,cita),HttpStatus.ACCEPTED);
     }
 }
