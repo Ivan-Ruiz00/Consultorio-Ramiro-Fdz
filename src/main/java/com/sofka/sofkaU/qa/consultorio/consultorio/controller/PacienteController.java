@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/pacientes")
 public class PacienteController implements IController<Paciente> {
     @Autowired
-    PacienteRepository pacienteRepository;
-    @Autowired
     IService<Paciente> service;
     @GetMapping("/all")
     @Override
@@ -29,8 +27,9 @@ public class PacienteController implements IController<Paciente> {
     public ResponseEntity actualizar(@PathVariable String cedula,@RequestBody Paciente paciente){
         return new ResponseEntity(service.actualizar(cedula,paciente),HttpStatus.ACCEPTED);
     }
+    @DeleteMapping("/eliminar")
     @Override
-    public ResponseEntity eliminar(Paciente paciente) {
-        return null;
+    public ResponseEntity eliminar(@RequestBody Paciente paciente) {
+        return new ResponseEntity(service.eliminar(paciente),HttpStatus.GONE);
     }
 }

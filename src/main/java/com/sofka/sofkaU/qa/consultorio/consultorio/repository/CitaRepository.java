@@ -14,6 +14,9 @@ public class CitaRepository implements IRepositorio<Cita>{
     private HashMap<String,Integer> semana= (HashMap<String, Integer>)Map.of("Lunes",getHorasDiarias(),"Martes",getHorasDiarias()
     ,"Miercoles",getHorasDiarias(),"Jueves",getHorasDiarias(),"Viernes",getHorasDiarias());
     Set<Cita> citas=new HashSet<>();
+    public Set<Cita> getCitas() {
+        return citas;
+    }
     @Override
     public void agregar(Cita cita) {
         if (semana.get(cita.getDia())>0){
