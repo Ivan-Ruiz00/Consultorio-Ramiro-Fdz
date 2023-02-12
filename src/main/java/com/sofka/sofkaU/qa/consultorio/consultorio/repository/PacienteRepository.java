@@ -23,7 +23,6 @@ public class PacienteRepository implements IRepositorio<Paciente>{
     @Override
     public void actualizar(String id,Paciente p) {
         if (id.isBlank()) {
-            System.out.println("Entró");
             Optional<Paciente> pacienteActualizar = pacientes.stream()
                     .filter(paciente -> paciente.getNombre().equals(p.getNombre())).findFirst();
             if (pacienteActualizar.isPresent()) {

@@ -1,12 +1,10 @@
 package com.sofka.sofkaU.qa.consultorio.consultorio.repository;
 import com.sofka.sofkaU.qa.consultorio.consultorio.repository.modelo.IRepositorio;
 import com.sofka.sofkaU.qa.consultorio.consultorio.service.modelo.Cita;
+import com.sofka.sofkaU.qa.consultorio.consultorio.service.modelo.Paciente;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Repository
 public class CitaRepository implements IRepositorio<Cita>{
@@ -39,12 +37,26 @@ public class CitaRepository implements IRepositorio<Cita>{
 
     @Override
     public void eliminar(Cita cita) {
-
+        citas.remove(cita);
     }
 
     @Override
     public void actualizar(String id, Cita cita) {
-
+        if (id.isBlank()) {
+            Optional<Cita> citaActualizar = citas.stream()
+                    .filter(c -> c.getPaciente().getNombre().equals(cita.getPaciente().getNombre())).findFirst();
+            if (citaActualizar.isPresent()) {
+                citas.remove(citaActualizar.get());
+                citas.add(cita);
+            }
+        } else {
+            Optional<Cita> citaActualizar = citas.stream()
+                    .filter(c -> c.getPaciente().getCedula().equals(id)).findFirst();
+            if (citaActualizar.isPresent()) {
+                citas.remove(citaActualizar.get());
+                citas.add(cita);
+            }
+        }
     }
 
     public int getHorasDiarias() {
